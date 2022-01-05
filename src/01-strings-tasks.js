@@ -18,7 +18,7 @@
  *   '',  'bb'  => 'bb'
  */
 function concatenateStrings(value1, value2) {
-  return value1 + value2
+  return value1 + value2;
 }
 
 /**
@@ -33,7 +33,7 @@ function concatenateStrings(value1, value2) {
  *   ''      => 0
  */
 function getStringLength(value) {
-  return value.length
+  return value.length;
 }
 
 /**
@@ -49,8 +49,8 @@ function getStringLength(value) {
  *   'John','Doe'      => 'Hello, John Doe!'
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(firstName, lastName ) {
-  return `Hello, ${firstName} ${lastName}!`
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -64,8 +64,8 @@ function getStringFromTemplate(firstName, lastName ) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-  let a = value.split(' ')[2]
-  return `${value.split(' ')[1]} ${a.substring(0, a.length-1)}`
+  const a = value.split(' ')[2];
+  return `${value.split(' ')[1]} ${a.substring(0, a.length - 1)}`;
 }
 
 
