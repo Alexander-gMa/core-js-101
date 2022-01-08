@@ -615,7 +615,7 @@ function getElementByIndexes(arr, indexes) {
  *
  */
 function swapHeadAndTail(arr) {
-  const middle = arr.length % 2 == 0;
+  const middle = arr.length % 2 !== 0;
   let index = arr.length;
   let head;
   let value = [];
