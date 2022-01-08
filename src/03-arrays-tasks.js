@@ -615,13 +615,27 @@ function getElementByIndexes(arr, indexes) {
  *
  */
 function swapHeadAndTail(arr) {
-  // const middle = arr.length % 2 !== 0;
-  // let head;
-  // let value = [];
-  // if (middle) {
-  //   middle = (arr.length - 1) / 2;
-  //   head = arr.slice
-  // }
+  const middle = arr.length % 2 !== 0;
+  let index = arr.length;
+  let head;
+  let value = [];
+  if (arr.length < 2) {
+    return arr;
+  }
+  if (arr.length < 3) {
+    return arr.reverse();
+  }
+  if (middle) {
+    index = (index - 1) / 2;
+    head = arr.splice(0, index);
+    arr.push(arr.shift());
+    value = arr.concat(head);
+  } else {
+    index /= 2;
+    head = arr.splice(0, index);
+    value = arr.concat(head);
+  }
+  return value;
 }
 
 
