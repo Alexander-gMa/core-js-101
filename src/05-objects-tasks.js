@@ -24,7 +24,7 @@ function Rectangle(width, height) {
   return {
     width,
     height,
-    getArea: () => width * height,
+    getArea() { return width * height; },
   };
 }
 
