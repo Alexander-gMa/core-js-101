@@ -15,6 +15,7 @@
  * which works like applying function f to the result of applying function g to x, i.e.
  *  getComposition(f,g)(x) = f(g(x))
  *
+ *
  * @param {Function} f
  * @param {Function} g
  * @return {Function}
@@ -23,8 +24,10 @@
  *   getComposition(Math.sin, Math.asin)(x) => Math.sin(Math.asin(x))
  *
  */
-function getComposition(/* f, g */) {
-  throw new Error('Not implemented');
+function getComposition(f, g) {
+  return function (x) {
+    return f(g(x));
+  };
 }
 
 
@@ -44,8 +47,10 @@ function getComposition(/* f, g */) {
  *   power05(16) => 4
  *
  */
-function getPowerFunction(/* exponent */) {
-  throw new Error('Not implemented');
+function getPowerFunction(exponent) {
+  return function (n) {
+    return n ** exponent;
+  };
 }
 
 
@@ -62,8 +67,23 @@ function getPowerFunction(/* exponent */) {
  *   getPolynom(8)     => y = 8
  *   getPolynom()      => null
  */
-function getPolynom() {
-  throw new Error('Not implemented');
+function getPolynom(...args) {
+  const arr = [...args];
+  // return (y) => {
+  //   const a = arr.reverse().reduce((acc, cur, index) => acc + cur * (y ** index), 0);
+  //   console.log(a);
+  //   return a;
+  // };
+  if (arr.length === 3) {
+    return (x) => arr[0] * x ** 2 + arr[1] * x + arr[2];
+  }
+  if (arr.length === 2) {
+    return (x) => arr[0] * x + arr[1];
+  }
+  if (arr.length === 1) {
+    return () => arr[0];
+  }
+  return '';
 }
 
 
@@ -81,8 +101,16 @@ function getPolynom() {
  *   ...
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
-function memoize(/* func */) {
-  throw new Error('Not implemented');
+function memoize(fun) {
+  const cache = {};
+  return function (n) {
+    if (cache[n] !== undefined) {
+      return cache[n];
+    }
+    const result = fun(n);
+    cache[n] = result;
+    return result;
+  };
 }
 
 
@@ -147,8 +175,10 @@ function logger(/* func, logFunc */) {
  *   partialUsingArguments(fn, 'a','b','c')('d') => 'abcd'
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
-function partialUsingArguments(/* fn, ...args1 */) {
-  throw new Error('Not implemented');
+function partialUsingArguments(fn, ...args1) {
+  return function (...el) {
+    return fn(...args1, ...el);
+  };
 }
 
 
