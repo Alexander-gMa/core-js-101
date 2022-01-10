@@ -25,7 +25,7 @@
  *
  */
 function getComposition(f, g) {
-  return function (x) {
+  return function a(x) {
     return f(g(x));
   };
 }
@@ -48,7 +48,7 @@ function getComposition(f, g) {
  *
  */
 function getPowerFunction(exponent) {
-  return function (n) {
+  return function a(n) {
     return n ** exponent;
   };
 }
@@ -103,7 +103,7 @@ function getPolynom(...args) {
  */
 function memoize(fun) {
   const cache = {};
-  return function (n) {
+  return function a(n) {
     if (cache[n] !== undefined) {
       return cache[n];
     }
@@ -176,7 +176,7 @@ function logger(/* func, logFunc */) {
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
 function partialUsingArguments(fn, ...args1) {
-  return function (...el) {
+  return function a(...el) {
     return fn(...args1, ...el);
   };
 }
