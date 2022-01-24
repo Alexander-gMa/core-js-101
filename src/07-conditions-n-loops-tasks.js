@@ -127,8 +127,10 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  if (rect1.top + rect1.width > rect2.top
+    && rect1.left + rect1.height > rect2.left) return true;
+  return false;
 }
 
 
@@ -158,8 +160,9 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  const d = (point.x - circle.center.x) ** 2 + (point.y - circle.center.y) ** 2;
+  return d < circle.radius ** 2;
 }
 
 
@@ -272,8 +275,13 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  return ccn.toString().split('')
+    .reverse()
+    .map((x) => parseInt(x, 10))
+    .map((x, idx) => (idx % 2 ? x * 2 : x))
+    .map((x) => (x > 9 ? (x % 10) + 1 : x))
+    .reduce((p, c) => p + c) % 10 === 0;
 }
 
 /**
@@ -435,8 +443,22 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(position) {
+  for (let i = 0; i < position.length; i += 1) {
+    if (position[i][0] && position[i][0] === position[i][1] && position[i][0] === position[i][2]) {
+      return (position[i][2]);
+    }
+    if (position[0][i] && position[0][i] === position[1][i] && position[0][i] === position[2][i]) {
+      return (position[2][i]);
+    }
+  }
+  if (position[0][0] && position[0][0] === position[1][1] && position[0][0] === position[2][2]) {
+    return (position[2][2]);
+  }
+  if (position[2][0] && position[2][0] === position[1][1] && position[2][0] === position[0][2]) {
+    return (position[0][2]);
+  }
+  return undefined;
 }
 
 
